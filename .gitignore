@@ -1,0 +1,6 @@
+# ignore GO dirs
+bin
+pkg
+
+# ignore Mac trach file
+.DS_Store
