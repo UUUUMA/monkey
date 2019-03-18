@@ -27,7 +27,7 @@ func (l *Lexer) readChar() {
 	l.readPosition += 1
 }
 
-func (l *Lexer) peekChar() byte{
+func (l *Lexer) peekChar() byte {
 	if l.readPosition >= len(l.input) {
 		return 0
 	} else {
