@@ -29,11 +29,16 @@ func TestLetStatement(t *testing.T) {
 			t.Fatalf("ParseProgram() returned nil")
 		}
 		if len(program.Statements) != 1 {
-			t.Fatalf("program.Statements does not contain 3 statements. got=%d", len(program.Statements))
+			t.Fatalf("program.Statements does not contain 1 statements. got=%d", len(program.Statements))
 		}
 
 		stmt := program.Statements[0]
 		if !testLetStatement(t, stmt, tt.expectedIdentifier) {
+			return
+		}
+
+		val := stmt.(*ast.LetStatement).Value
+		if !testLiteralExpression(t, val, tt.expectedValue) {
 			return
 		}
 	}
@@ -94,6 +99,9 @@ func TestReturnStatement(t *testing.T) {
 		}
 		if returnStmt.TokenLiteral() != "return" {
 			t.Errorf("returnStmt.TokenLiteral not 'return', got = %q", returnStmt.TokenLiteral())
+		}
+		if !testLiteralExpression(t, returnStmt.ReturnValue, tt.expectedValue) {
+			return
 		}
 	}
 }
