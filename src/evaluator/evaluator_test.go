@@ -1,17 +1,17 @@
 package evaluator
 
 import (
-	"testing"
 	"lexer"
-	"parser"
 	"object"
+	"parser"
+	"testing"
 )
 
 func TestEvalIntegerExpression(t *testing.T) {
 	tests := []struct {
-		input string
+		input    string
 		expected int64
-	} {
+	}{
 		{"5", 5},
 		{"10", 10},
 	}
@@ -26,7 +26,7 @@ func testEval(input string) object.Object {
 	l := lexer.New(input)
 	p := parser.New(l)
 	program := p.ParseProgram()
-	
+
 	return Eval(program)
 }
 
